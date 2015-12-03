@@ -1,62 +1,90 @@
+<div>
+	<button class="btn btn-danger" id="transform">Transform</button>
+</div>
+
 <div class="container">
 	<div class="row">
 		<div class="col-lg-12">
 
-				<div id="enemystanding">
-					<center><%= image_tag "EnemyFrontStand.png", width:"400", height:"400", class:"img-responsive"%></center>
-				</div>
+			<div id="enemystanding">
+				<center><%= image_tag "EnemyFrontStand.png", width:"400", height:"400", class:"img-responsive"%></center>
+			</div>
 
-				<div id="enemyeffect">
-					<canvas id = 'canv'></canvas>
-					<script type="text/javascript">
-						var c = document.getElementById('canv'),
-						$ = c.getContext('2d'),
-						w = c.width = window.innerWidth,
-						h = c.height = window.innerHeight,
-						t = 0, num = 550, u=0,
-						s, a, b, 
-						x, y, _x, _y,
-						_t = 1 / 60;
+			<script> 
+				// $(document).ready(function(){
+				// 	$("#transform").click(function);
+				// 		$("#enemyclaws").show("scale",{}, 1000);
+				// 		});
+				// 	});
 
-						var anim = function() {
-							$.globalCompositeOperation = 'source-over';
-							window.requestAnimationFrame(anim);
-							$.fillStyle = 'hsla(0, 0%, 0%, .35)';
-							$.fillRect(0, 0, w, h);
-							$.globalCompositeOperation = 'lighter';
-							for (var i = 0; i < 1; i++) {
-								x = 0;
-								$.beginPath();
-								for (var j = 0; j < num; j++) {
-									x += .45 * Math.sin(11);
-									y = x * Math.sin(i + 3.0 * t + x /15) / 15;
-									_x = x * Math.cos(b) + y * Math.sin(i);
-									_y = x * Math.sin(b) + y * Math.cos(i);
-									b = (j*2.66) * Math.PI / 4;
-									$.lineWidth = 0.040;
-									$.arc(w / 2 + _x, h / 2 + _y, 0.0, 0, 2 * Math.PI);
-								}
-								var g = $.createLinearGradient(w / 2 + _x, h / 2 + _y,  
-									1, w / 2 + _x, h / 2 + _y);
-								g.addColorStop(0.1, 'red');
-								g.addColorStop(0.5, 'white');
-								g.addColorStop(1, 'red'); 
-								$.strokeStyle = g;
-								$.stroke();
-							}
-							t += _t;
-							u-=.2;
-						};
-						anim();
+				$(document).ready(function(){
+					$("#transform").click(function(){
+						//$("#enemyclaws").fadeIn();
+						$("#enemyclaws").animate( {
+							marginTop: "0px",
+							opacity: 1
 
-						window.addEventListener('resize', function() {
-							c.width = w = window.innerWidth;
-							c.height = h = window.innerHeight;
-						}, false);
-					</script>
-				</div>
+						}, 1000 );
+					});
+				});
+
+			</script> 
+
+<div id="enemyclaws" style="opacity:0" >
+	<center><%= image_tag "EnemyClaws-02.png", width:"400", height:"200", class:"img-responsive"%></center>
+</div>
+
+<div id="enemyeffect">
+	<canvas id = 'canv'></canvas>
+	<script type="text/javascript">
+		var c = document.getElementById('canv'),
+		taco = c.getContext('2d'),
+		w = c.width = window.innerWidth,
+		h = c.height = window.innerHeight,
+		t = 0, num = 550, u=0,
+		s, a, b, 
+		x, y, _x, _y,
+		_t = 1 / 60;
+
+		var anim = function() {
+			taco.globalCompositeOperation = 'source-over';
+			window.requestAnimationFrame(anim);
+			taco.fillStyle = 'hsla(0, 0%, 0%, .35)';
+			taco.fillRect(0, 0, w, h);
+			taco.globalCompositeOperation = 'lighter';
+			for (var i = 0; i < 1; i++) {
+				x = 0;
+				taco.beginPath();
+				for (var j = 0; j < num; j++) {
+					x += .45 * Math.sin(11);
+					y = x * Math.sin(i + 3.0 * t + x /15) / 15;
+					_x = x * Math.cos(b) + y * Math.sin(i);
+					_y = x * Math.sin(b) + y * Math.cos(i);
+					b = (j*2.66) * Math.PI / 4;
+					taco.lineWidth = 0.040;
+					taco.arc(w / 2 + _x, h / 2 + _y, 0.0, 0, 2 * Math.PI);
+				}
+				var g = taco.createLinearGradient(w / 2 + _x, h / 2 + _y,  
+					1, w / 2 + _x, h / 2 + _y);
+				g.addColorStop(0.1, 'red');
+				g.addColorStop(0.5, 'white');
+				g.addColorStop(1, 'red'); 
+				taco.strokeStyle = g;
+				taco.stroke();
+			}
+			t += _t;
+			u-=.2;
+		};
+		anim();
+
+		window.addEventListener('resize', function() {
+			c.width = w = window.innerWidth;
+			c.height = h = window.innerHeight;
+		}, false);
+	</script>
+</div>
 
 
-		</div>
-	</div>
+</div>
+</div>
 </div>
