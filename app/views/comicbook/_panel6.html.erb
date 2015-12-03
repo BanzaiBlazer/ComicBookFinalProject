@@ -4,39 +4,49 @@
 	});
 </script> 
 
-<div id="panel6">
+<div id="panel6" style="display:none">
 
-<div>
-<button class="btn btn-danger" id="action">ACTION!</button>
-</div>
+	<div>
+		<button class="btn btn-danger" id="action">ACTION!</button>
+	</div>
 
-<div id="speedlines">
-	<%= image_tag "speedlines.png", width:"1280", height:"800"%>
-</div>
+	<div id="speedlines">
+		<%= image_tag "speedlines.png", width:"1280", height:"800"%>
+	</div>
 
-<div id="tentacle1">
-	<%= image_tag "tentacle-01.png", width:"70%"%>
-</div>
+	<div id="tentacle1">
+		<%= image_tag "tentacle-01.png", width:"70%"%>
+	</div>
 
-<div id="tentacle2">
-	<%= image_tag "tentacle-01.png", width:"70%"%>
-</div>
+	<div id="tentacle2">
+		<%= image_tag "tentacle-01.png", width:"70%"%>
+	</div>
 
-<div id="herostand">
-	<%= image_tag "herostandsword-01.png", width:"250px"%>
-</div>
+	<div id="herostand">
+		<%= image_tag "herostandsword-01.png", width:"250px"%>
+	</div>	
 
-			<script> 
-				$(document).ready(function(){
-					$("#action").click(function(){
-						$("#tentacle1").animate( {
-							marginLeft: "950px"
-						}, 1000 );
-						$("#tentacle2").animate( {
-							marginLeft: "950px"
-						}, 1000 );
-					});
-					});
-			</script>
+	<div id="dienow">
+		<h3>NOW DIE!!!</h3>
+	</div>	
 
 </div>
+
+<div id="panel6to7button" style="display:none">
+		<center><%= link_to "Next Page", comicbook_comic6_path, method: :get, class:"btn btn-danger", role:"button" %></center>
+</div>	
+
+<script> 
+	$(document).ready(function(){
+		$("#action").click(function(){
+			$("#tentacle1").animate( {
+				marginLeft: "950px"
+			}, 1000 );
+			$("#tentacle2").animate( {
+				marginLeft: "950px"
+			}, 1000 );
+			$( "#panel6" ).delay( 3500 ).fadeOut( "slow" );
+			$("#panel6to7button").fadeIn("slow");
+		});
+	});
+</script>
