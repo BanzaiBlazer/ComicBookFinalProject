@@ -1,13 +1,13 @@
 			<script> 
 				$(document).ready(function(){
-					$("#panel4").fadeIn("slow");
+					$("#panel4pic").fadeIn("slow");
 				});
 			</script> 
 
-			<div id="panel4" style="display: none">
+			<div id="panel4pic" style="display: none">
 
 				<%= image_tag "heroenemy-01.png", width:"1280", height:"600", class:"img-responsive"%>
-				
+
 	<div>
 		<button class="btn btn-danger" id="panel4button">Next</button>
 	</div>
@@ -42,4 +42,3 @@
 	<div id="panel4to5button" style="display: none">
 		<%= link_to "Next Page", comicbook_comic4_path, method: :get, class:"btn btn-danger", role:"button" %>
 	</div>
-</div>
