@@ -1,3 +1,10 @@
+<script> 
+	$(document).ready(function(){
+		$("#panel5").fadeIn("slow");
+	});
+</script> 
+
+<div id="panel5" style="display:none">
 <div>
 	<button class="btn btn-danger" id="transform">Transform</button>
 </div>
@@ -5,6 +12,18 @@
 <div class="container">
 	<div class="row">
 		<div class="col-lg-12">
+
+			<div id="noturn" style="display:none">
+				<h3>No turning back now...</h3>
+			</div>
+
+			<div id="rightnoturn" style="display:none">
+				<h3>You're absolutely right.</h3>
+			</div>
+
+			<div id="panel5to6button" style="display: none">
+				<%= link_to "Next Page", comicbook_comic5_path, method: :get, class:"btn btn-danger", role:"button" %>
+			</div>
 
 			<div id="enemystanding">
 				<center><%= image_tag "EnemyFrontStand.png", width:"400", height:"400", class:"img-responsive"%></center>
@@ -25,10 +44,12 @@
 							opacity: 1
 
 						}, 1000 );
+					$( "#noturn" ).show( "slow" );
+					$( "#rightnoturn" ).show( "slow" );
+					$( "#panel5to6button" ).show( "slow" );
 					});
-				});
-
-			</script> 
+					});
+			</script>
 
 <div id="enemyclaws" style="opacity:0" >
 	<center><%= image_tag "EnemyClaws-02.png", width:"400", height:"200", class:"img-responsive"%></center>
@@ -85,6 +106,7 @@
 </div>
 
 
+</div>
 </div>
 </div>
 </div>
