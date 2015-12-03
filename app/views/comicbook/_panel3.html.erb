@@ -1,0 +1,61 @@
+<script type="text/javascript" src="snowstorm.js"></script>
+
+		<script> 
+			$(document).ready(function(){
+				$("#panel3").fadeIn("slow");
+			});
+		</script> 
+
+<div id="panel3" style="display: none">
+<div class="container" id="panel3background">
+	<div class="row">
+		<div class="col-lg-12" style="margin-top: 310px">
+			<%= image_tag "Enemy-01.png", width: "40", height: "164" , id:"enemy1"%>
+			<%= image_tag "herostand-01.png", width: "101", height: "157", id:"hero1" %>
+		</div>
+	</div>
+</div>
+
+<div>
+	<div><button class="btn btn-danger" id="panel3button">Next</button></div>
+
+	<script>
+		$("button").click(function() {
+			$( "#panel3target1" ).show( "slow" );
+			$( "#panel3target2" ).show( "slow" );
+			$( "#panel3target3" ).show( "slow" );
+			$( "#panel3target4" ).show( "slow" );
+			$( "#panel3to4button" ).show( "slow" );
+		});
+	</script>
+
+	<div>
+		<div id="panel3target1" style="display: none">
+			<h3>Cyrus...</h3>
+		</div>
+	</div>
+	<div>
+		<div id="panel3target2" style="display: none">
+			<h3>Give me the Gem, you don't know its power.</h3>
+		</div>
+	</div>
+	<div>
+		<div id="panel3target3" style="display: none">
+			<h3>No way, I'm gonna use it. To kill you.</h3>
+		</div>
+	</div>
+	<div>
+		<div id="panel3target4" style="display: none">
+			<h3>You really are a dumbass.</h3>
+		</div>
+	</div>
+	<div>
+		<div id="panel3to4button" style="display: none">
+		<%= link_to "Next Page", comicbook_comic3_path, method: :get, id:"panel3to4", class:"btn btn-danger", role:"button" %>
+		</div>
+	</div>
+
+
+</div>
+</div>
+</div>

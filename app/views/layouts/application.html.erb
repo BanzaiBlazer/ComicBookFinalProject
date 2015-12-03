@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<!-- META TAGS -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="UTF-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<!-- Bootstrap CSS -->
+	<%= stylesheet_link_tag "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" %>
+	<%= stylesheet_link_tag "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css" %>
+	<%= stylesheet_link_tag "https://fonts.googleapis.com/css?family=Coming+Soon" %>
+	<!-- jQuery and Bootstrap js -->
+	<%= javascript_include_tag "https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js" %>
+	<%= javascript_include_tag "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" %>
+	<%= javascript_include_tag "https://cdn.jsdelivr.net/vivus/latest/vivus.min.js" %>	
+	<!-- Our css and js files -->
+	<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+	<%= javascript_include_tag 'application', 'data-no-turbolinks-track' => true %>
+	<%= csrf_meta_tags %>
+	<title>Within Shadow -1</title>
+
+	</head>
+<body>
+
+<%= yield %>
+
+</body>
+</html>

@@ -1,0 +1,332 @@
+
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+@charset "UTF-8";
+/* CSS Document */
+
+		p{
+			color: white;
+		}
+
+		h1, h2, h3, h4, h5, h6{
+			color: white;
+		}
+
+		html{
+			max-width:1240px;
+		}
+
+		body{
+			background-color:black;
+		}
+
+/* PANEL 1 and 2 */
+		
+		#city{
+			z-index:4;
+			position:absolute;
+			margin-top:350px;
+		}
+
+		#herowatch{
+			position:absolute;
+			z-index:3;
+		}
+
+		#maintitle{
+			position:absolute;
+			margin-top:950px;
+			z-index:5;
+		}
+		
+		#captionbegin{
+			position:relative;
+			z-index:2;
+			font-size:16px;
+			margin-bottom: 400px;
+			text-align: center;
+		}
+
+
+		#panel2{
+			margin-bottom: 1150px;
+			text-align: center;
+		}
+
+		#ship1{
+			position: relative;	
+			z-index:7;
+		}
+		
+		#ship2{
+			position: relative;	
+			z-index:1;
+		}
+		
+		#ship3{
+			position: relative;
+			z-index:6;	
+		}
+
+/* PANEL 3 */
+
+		#enemy1{
+			float: left;
+			margin-left: 500px;
+			margin-top: 100px;
+			margin-bottom: 50px;
+		}
+
+		#hero1{
+			float: right;
+			margin-right: 450px;
+			margin-top: 100px;
+			margin-bottom: 50px;
+		}
+
+		#panel3background{
+			background-image: url(<%= asset_path 'alleywaydark.png' %>);	
+			z-index: 9;	
+		}
+
+		#panel3dialogue{
+			z-index: 9;
+		}
+
+		#panel3button{
+			position: relative;
+			top: -100px;
+			left: 100px;
+			width: 75px;
+			height: 40px;
+		}
+
+		#panel3target1{
+			text-align: center;
+			background-color: black;
+			z-index: 11;
+			width: 200px;
+			height: 75px;
+			border: solid red 2px;
+			margin-left: 400px;
+			margin-top: -600px;
+		}
+
+		#panel3target2{
+			text-align: center;
+			background-color: black;
+			z-index: 12;
+			width: 400px;
+			height: 100px;
+			border: solid white 2px;
+			margin-left: 650px;
+			margin-top: 25px;
+		}
+
+		#panel3target3{
+			text-align: center;
+			background-color: black;
+			z-index: 13;
+			width: 300px;
+			height: 100px;
+			border: solid red 2px;
+			margin-left: 300px;
+			margin-top: -35px;
+		}
+
+		#panel3target4{
+			text-align: center;
+			background-color: black;
+			z-index: 14;
+			width: 200px;
+			height: 100px;
+			border: solid white 2px;
+			margin-left: 750px;
+			margin-top: -15px;
+		}
+
+		#panel3to4{
+			position: relative;
+			top: 105px;
+			left: 1000px;
+		}
+
+/* PANEL 4 */
+
+		#panel4button{
+			position: relative;
+			z-index: 17;
+			top: -100px;
+			left: 100px;
+			width: 75px;
+			height: 40px;
+		}
+
+		#panel4target1{
+			text-align: center;
+			background-color: black;
+			z-index: 15;
+			width: 200px;
+			height: 100px;
+			border: solid red 2px;
+			position: relative;
+			left: 535px;
+			bottom: 550px;
+		}
+
+		#panel4target2{
+			text-align: center;
+			background-color: black;
+			z-index: 16;
+			width: 300px;
+			height: 60px;
+			border: solid white 2px;
+			position: relative;
+			left: 680px;
+			bottom: 300px;
+		}
+
+		#panel4target3{
+			text-align: center;
+			background-color: black;
+			z-index: 18;
+			width: 500px;
+			height: 40px;
+			border: solid white 2px;
+			position: relative;
+			left: 350px;
+			bottom: -20px;
+			margin-top: -275px;
+		}
+
+		#panel4to5button{
+			position: relative;
+			left: 550px;
+			bottom: -100px;
+		}
+
+/* Lower Screen Sizes
+
+@media all and (max-width: 991px){
+		#city{
+			z-index:4;
+			position:absolute;
+			margin-top:225px;
+		}
+
+		#herowatch{
+			position:absolute;
+			z-index:3;
+		}
+
+		#maintitle{
+			position:absolute;
+			margin-top:610px;
+			z-index:5;
+		}
+		
+		#captionbegin{
+			position:relative;
+			z-index:2;
+			font-size:16px;
+			margin-bottom: 100px;
+			text-align: center;
+		}
+}
+
+/* WHEN BETWEEN 755px and 661px ----------------------------- 
+
+@media all and (min-width: 661px) and (max-width: 755px){
+		#city{
+			z-index:4;
+			position:absolute;
+			margin-top:175px;
+		}
+
+		#herowatch{
+			position:absolute;
+			z-index:3;
+		}
+
+		#maintitle{
+			position:absolute;
+			margin-top:515px;
+			z-index:5;
+		}
+		
+		#captionbegin{
+			position:relative;
+			z-index:2;
+			font-size:16px;
+			margin-bottom: 400px;
+			text-align: center;
+		}
+}
+
+WHEN BETWEEN 660px and 401px ----------------------------- 
+@media all and (min-width: 401px) and (max-width: 660px){
+		#city{
+			z-index:4;
+			position:absolute;
+			margin-top:100px;
+		}
+
+		#herowatch{
+			position:absolute;
+			z-index:3;
+		}
+
+		#maintitle{
+			position:absolute;
+			margin-top:300px;
+			z-index:5;
+		}
+		
+		#captionbegin{
+			position:relative;
+			z-index:2;
+			font-size:24px;
+			margin-bottom: 100px;
+			text-align: center;
+		}
+}
+
+WHEN AT 400px --------------------------------------------- 
+@media all and (max-width:400px){
+		#city{
+			z-index:4;
+			position:absolute;
+			margin-top:100px;
+		}
+
+		#herowatch{
+			position:absolute;
+			z-index:3;
+		}
+
+		#maintitle{
+			position:absolute;
+			margin-top:300px;
+			z-index:5;
+		}
+		
+		#captionbegin{
+			position:relative;
+			z-index:2;
+			font-size:16px;
+			margin-bottom: 400px;
+			text-align: center;
+		}
+}*/
