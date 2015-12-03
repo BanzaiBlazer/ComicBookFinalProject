@@ -1,1 +1,42 @@
-_panel7.html.erb
+<div>
+	<button class="btn btn-danger" id="action2">ACTION!</button>
+</div>
+
+<script> 
+	
+</script> 
+
+<div id="panel7" style="display:none">
+	
+	<div id="tentaclechopped">
+		<%= image_tag "tentaclechopped.png", width:"1230", height:"550"%>
+	</div>
+
+	<div id="slicer">
+		<%= image_tag "slicer.png", width:"500px" %>
+	</div>
+
+	<div id="panel7to8button" style="display:none">
+		<center><%= link_to "Next Page", comicbook_comic6_path, method: :get, class:"btn btn-danger", role:"button" %></center>
+	</div>	
+
+</div>
+
+<div id="checkmate" style="display:none">
+	<h3>Checkmate.</h3>
+</div>
+
+<script> 
+	$(document).ready(function(){
+		$("#action2").click(function(){
+			$(document).ready(function(){
+				$("#checkmate").delay( 4000 ).fadeIn("slow");
+				$("#panel7").fadeIn("slow").delay( 2500 );
+			});
+			$("#tentaclechopped").delay( 1500 ).animate( {
+				marginBottom: "-950px"
+			}, 2000 );
+			$("#panel7to8button").delay( 5500 ).fadeIn("slow");
+		});
+	});
+</script>
