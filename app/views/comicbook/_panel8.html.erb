@@ -1,0 +1,55 @@
+<script> 
+	$(document).ready(function(){
+		$("#panel8").fadeIn( 1500 );
+	});
+</script> 
+
+<div id="panel8" style="display:none">
+
+	<div>
+		<button class="btn btn-danger" id="action3">SLASH!</button>
+	</div>
+	
+	<div id="enemybefore">
+		<%= image_tag "chopped-01.png", width: "350", height: "570" %>
+	</div>
+
+	<div id="enemyafter1">
+		<%= image_tag "chopped-02.png", width: "400", height: "300"%>
+	</div>
+
+	<div id="enemyafter2">
+		<%= image_tag "chopped-03.png", width: "380", height: "210"%>
+	</div>
+
+	<div id="bloodline">
+		<%= image_tag "chopped-04.png", width: "250", height: "50"%>
+	</div>
+
+	<div id="herobefore">
+		<%= image_tag "chopped-05.png", width: "680", height: "525"%>
+	</div>
+
+	<div id="heroafter">
+		<%= image_tag "chopped-06.png", width: "750", height: "500"%>
+	</div>
+
+	<div id="sliceline">
+		<%= image_tag "chopped-07.png", width: "400", height: "100"%>
+	</div>
+
+</div>
+
+<script> 
+	$(document).ready(function(){
+		$("#action3").click(function(){
+			$("#checkmate").delay( 4000 ).fadeIn("slow");
+			$("#panel7").fadeIn("slow").delay( 2500 );
+			});
+			$("#tentaclechopped").delay( 1500 ).animate( {
+				marginBottom: "-950px"
+			}, 2000 );
+			$("#panel7to8button").delay( 5500 ).fadeIn("slow");
+		});
+	});
+</script>
