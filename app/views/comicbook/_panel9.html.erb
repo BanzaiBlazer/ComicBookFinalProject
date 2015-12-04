@@ -1,0 +1,15 @@
+<script> 
+	$(document).ready(function(){
+		$("#hand").animate({opacity: 1}, 1500 );
+	});
+</script> 
+
+<%= render "panel9gem" %>
+
+<div id="hand" style="opacity:1">
+		<%= image_tag "hand-01.png", width: "1280", height: "250" %>
+	</div>
+
+<div id="panel9to10button">
+		<%= link_to "Next Page", comicbook_comic9_path, method: :get, class:"btn btn-danger", role:"button" %>
+</div>

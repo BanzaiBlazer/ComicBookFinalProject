@@ -36,6 +36,10 @@
 
 </div>
 
+	<div id="swooshdiv" style="opacity:0">
+		<%= render "panel8swoosh" %>
+	</div>
+
 	<div>
 		<button class="btn btn-danger" id="action3">SLASH!</button>
 	</div>
@@ -47,6 +51,7 @@
 			$("body").css("background-color", "white", 1500);
 			$("#herobefore").animate({opacity: 0}, 2);
 			$("#enemybefore").animate({opacity: 0}, 1);
+			$("#swooshdiv").animate({opacity: 1}, 1);
 			$("#sliceline").delay(1000).animate({opacity: 1});
 			$("#sliceline").delay(500).animate({opacity: 0});
 			$("#panel8").animate({opacity: 0}, 100);
@@ -55,32 +60,16 @@
 			$("#enemyafter1").animate({opacity: 1}, 2);
 			$("#enemyafter2").animate({opacity: 1}, 1);
 			$("#bloodline").animate({opacity: 1}, 100).delay(100);
-			$("#enemyafter1").animate({right: "500px"}, 100).delay(250);
+			$("#enemyafter1").animate({right: "300px"}, 100).delay(250);
+			$("#enemyafter2").animate({right: "750px"}, 100).delay(250);
 			$("#bloodline").animate({opacity: 0}, 200);
-			$("#enemyafter1").animate({opacity: 0}, 5999);
-			$("#enemyafter2").animate({opacity: 0}, 6000);
-
-
-			// console.log("hellow")
-			// setTimeout(function(){ 
-			// 	$("#enemybefore").hide();
-			// 	 }, 2000);	
-			// 	$("body").css("background-color", "white");
-			// 	$("#panel8").css("opacity", 0);
-			// setTimeout(function(){
-			// 	$("body").css("background-color", "black");
-			// 	$("#panel8").animate({opacity: 1}, 200)
-			// 	}, 2200)
-			// $("#enemybefore").delay( 4000 ).fadeOut("slow");
-
-
-
-			// $("#panel7").fadeIn("slow").delay( 2500 );
-			// });
-			// $("#tentaclechopped").delay( 1500 ).animate( {
-			// 	marginBottom: "-950px"
-			// }, 2000 );
-			// $("#panel7to8button").delay( 5500 ).fadeIn("slow");
+			$("#enemyafter1").animate({opacity: 0}, 4999);
+			$("#enemyafter2").animate({opacity: 0}, 5000);
+			$("#panel8to9button").fadeIn("slow");
 		});
 	});
 </script>
+
+	<div id="panel8to9button" style="display:none">
+		<%= link_to "Next Page", comicbook_comic8_path, method: :get, class:"btn btn-danger", role:"button" %>
+	</div>
