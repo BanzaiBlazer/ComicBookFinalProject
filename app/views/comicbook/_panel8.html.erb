@@ -1,55 +1,86 @@
 <script> 
 	$(document).ready(function(){
-		$("#panel8").fadeIn( 1500 );
+		$("#panel8").animate({opacity: 1}, 1500 );
 	});
 </script> 
 
-<div id="panel8" style="display:none">
-
-	<div>
-		<button class="btn btn-danger" id="action3">SLASH!</button>
-	</div>
+<div id="panel8" style="opacity:0">
 	
-	<div id="enemybefore">
+	<div id="enemybefore" style="opacity:1">
 		<%= image_tag "chopped-01.png", width: "350", height: "570" %>
 	</div>
 
-	<div id="enemyafter1">
+	<div id="enemyafter1" style="opacity:0">
 		<%= image_tag "chopped-02.png", width: "400", height: "300"%>
 	</div>
 
-	<div id="enemyafter2">
+	<div id="enemyafter2" style="opacity:0">
 		<%= image_tag "chopped-03.png", width: "380", height: "210"%>
 	</div>
 
-	<div id="bloodline">
+	<div id="bloodline" style="opacity:0">
 		<%= image_tag "chopped-04.png", width: "250", height: "50"%>
 	</div>
 
-	<div id="herobefore">
+	<div id="herobefore" style="opacity:1">
 		<%= image_tag "chopped-05.png", width: "680", height: "525"%>
 	</div>
 
-	<div id="heroafter">
+	<div id="heroafter" style="opacity:0">
 		<%= image_tag "chopped-06.png", width: "750", height: "500"%>
 	</div>
 
-	<div id="sliceline">
+	<div id="sliceline" style="opacity:0">
 		<%= image_tag "chopped-07.png", width: "400", height: "100"%>
 	</div>
 
 </div>
 
+	<div>
+		<button class="btn btn-danger" id="action3">SLASH!</button>
+	</div>
+
 <script> 
 	$(document).ready(function(){
 		$("#action3").click(function(){
-			$("#checkmate").delay( 4000 ).fadeIn("slow");
-			$("#panel7").fadeIn("slow").delay( 2500 );
-			});
-			$("#tentaclechopped").delay( 1500 ).animate( {
-				marginBottom: "-950px"
-			}, 2000 );
-			$("#panel7to8button").delay( 5500 ).fadeIn("slow");
+			$("#action3").fadeOut("slow").delay(1000);
+			$("body").css("background-color", "white", 1500);
+			$("#herobefore").animate({opacity: 0}, 2);
+			$("#enemybefore").animate({opacity: 0}, 1);
+			$("#sliceline").delay(1000).animate({opacity: 1});
+			$("#sliceline").delay(500).animate({opacity: 0});
+			$("#panel8").animate({opacity: 0}, 100);
+			$("#panel8").delay( 1000 ).animate({opacity: 1}, 100);
+			$("#heroafter").animate({opacity: 1}, 500).delay(1000);
+			$("#enemyafter1").animate({opacity: 1}, 2);
+			$("#enemyafter2").animate({opacity: 1}, 1);
+			$("#bloodline").animate({opacity: 1}, 100).delay(100);
+			$("#enemyafter1").animate({right: "500px"}, 100).delay(250);
+			$("#bloodline").animate({opacity: 0}, 200);
+			$("#enemyafter1").animate({opacity: 0}, 5999);
+			$("#enemyafter2").animate({opacity: 0}, 6000);
+
+
+			// console.log("hellow")
+			// setTimeout(function(){ 
+			// 	$("#enemybefore").hide();
+			// 	 }, 2000);	
+			// 	$("body").css("background-color", "white");
+			// 	$("#panel8").css("opacity", 0);
+			// setTimeout(function(){
+			// 	$("body").css("background-color", "black");
+			// 	$("#panel8").animate({opacity: 1}, 200)
+			// 	}, 2200)
+			// $("#enemybefore").delay( 4000 ).fadeOut("slow");
+
+
+
+			// $("#panel7").fadeIn("slow").delay( 2500 );
+			// });
+			// $("#tentaclechopped").delay( 1500 ).animate( {
+			// 	marginBottom: "-950px"
+			// }, 2000 );
+			// $("#panel7to8button").delay( 5500 ).fadeIn("slow");
 		});
 	});
 </script>
