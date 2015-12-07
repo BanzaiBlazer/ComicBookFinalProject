@@ -1,8 +1,13 @@
 <script> 
 	$(document).ready(function(){
+		$("#endingdrawing").delay(1500).animate({opacity: 1}, 1500 );
 		$("#finaldialogue").animate({opacity: 1}, 1500 );
 	});
 </script> 
+
+<div id="endingdrawing" style="opacity: 0">
+	<%= image_tag "herowalkingout-01.png", width: "1280", height: "800" %>
+</div>
 
 <div id="finaldialogue" style="opacity: 0">
 	<div id="panel10target1">
@@ -22,6 +27,6 @@
 	</div>
 
 	<div id="theend">
-		<%= image_tag "theend.png", width: "540", height: "140" %>
+		<%= image_tag "theend.png", width: "440", height: "100" %>
 	</div>
 </div>
