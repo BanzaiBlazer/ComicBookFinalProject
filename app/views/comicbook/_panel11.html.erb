@@ -1,3 +1,11 @@
+<script> 
+	$(document).ready(function(){
+		$("#panel11").delay( 500 ).fadeIn("slow");
+	});
+</script> 
+
+<div id="panel11" style="display:none">
+	
 <div id="eyesocket">
 	<%= image_tag "eyesocket-01.png", width: "1280", height: "800" %>
 </div>
@@ -7,5 +15,15 @@
 </div>
 
 <div id="bloodpool">
-<%= render "bloodpool" %>
+	<%= render "bloodpool" %>
+</div>
+
+<div id="panel11target1">
+	<h3>How does a demon come to this plain of existence?</h3>
+</div>
+
+<div id="panel11target2">
+	<h3>Through the possession of a human, asking for an selfish request from the Devil.</h3>
+</div>
+
 </div>
