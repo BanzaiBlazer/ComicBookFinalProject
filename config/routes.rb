@@ -11,6 +11,8 @@ Rails.application.routes.draw do
   get "comicbook/comic8"
   get "comicbook/comic9"
 
+  get "comicbook/comic1", to: "comicbook#comic1"
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
