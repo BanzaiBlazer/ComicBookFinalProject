@@ -1,174 +1,67 @@
 <html>
-	<head>
-		<meta charset="utf-8">
-		<style>
-			body {
-				margin: 0px;
-				background-color: #000000;
-				overflow: hidden;
-			}
-		</style>
-	</head>
-	<body>
+<head>
+	<meta charset="utf-8">
+	<style>
+		body {
+			width:100%; 
+			overflow:hidden;
+			margin:0;
+		}
+	</style>
+</head>
+<body>
 
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r73/three.js"></script>
+	<canvas id = 'gemflare'></canvas>
 
-		<script type="x-shader/x-vertex" id="vertexShader">
+	<script type="text/javascript">
 
-			attribute vec3 center;
-			varying vec3 vCenter;
+		var c = document.getElementById('gemflare'),
+		$ = c.getContext('2d'),
+		w = c.width = window.innerWidth,
+		h = c.height = window.innerHeight,
+		t = 0, num = 250, u=-15, _u, col,
+		s, a, b, 
+		x, y, _x, _y,
+		_t = 1 / 60;
 
-			void main() {
-
-				vCenter = center;
-				gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );
-
-			}
-
-		</script>
-
-		<script type="x-shader/x-fragment" id="fragmentShader">
-
-			varying vec3 vCenter;
-
-			float edgeFactorTri() {
-
-				vec3 d = fwidth( vCenter.xyz );
-				vec3 a3 = smoothstep( vec3( 0.0 ), d * 1.5, vCenter.xyz );
-				return min( min( a3.x, a3.y ), a3.z );
-
-			}
-
-			void main() {
-
-				gl_FragColor.rgb = mix( vec3( 1.0 ), vec3( 0.2 ), edgeFactorTri() );
-				gl_FragColor.a = 1.0;
-			}
-
-		</script>
-
-		<script>
-
-			var camera, scene, renderer;
-
-			init();
-			animate();
-
-			function init() {
-
-				camera = new THREE.PerspectiveCamera( 40, window.innerWidth / window.innerHeight, 1, 2000 );
-				camera.position.z = 800;
-
-				scene = new THREE.Scene();
-
-				var size = 150;
-
-				//
-
-				var geometry = new THREE.BoxGeometry( size, size, size );
-				var material = new THREE.MeshBasicMaterial( { wireframe: true } );
-
-				var mesh = new THREE.Mesh( geometry, material );
-				mesh.position.x = 0;
-				mesh.position.y = -50;
-				scene.add( mesh );
-
-				//
-
-				var geometry = new THREE.BufferGeometry().fromGeometry( new THREE.BoxGeometry( size, size, size ) );
-
-				setupAttributes( geometry );
-
-				var material = new THREE.ShaderMaterial( {
-					uniforms: {},
-					vertexShader: document.getElementById( 'vertexShader' ).textContent,
-					fragmentShader: document.getElementById( 'fragmentShader' ).textContent,
-					derivatives: true
-				} );
-
-				// var mesh = new THREE.Mesh( geometry, material );
-				// mesh.position.x = 150;
-				// scene.add( mesh );
-
-				//
-
-				var geometry = new THREE.BufferGeometry().fromGeometry( new THREE.SphereGeometry( size / 2, 32, 16 ) );
-
-				setupAttributes( geometry );
-
-				var material = new THREE.ShaderMaterial( {
-					uniforms: {},
-					vertexShader: document.getElementById( 'vertexShader' ).textContent,
-					fragmentShader: document.getElementById( 'fragmentShader' ).textContent,
-					derivatives: true
-				} );
-
-				// var mesh = new THREE.Mesh( geometry, material );
-				// mesh.position.x = -150;
-				// scene.add( mesh );
-
-				// renderer
-
-				renderer = new THREE.WebGLRenderer( { antialias: true } );
-				renderer.setPixelRatio( window.devicePixelRatio );
-				renderer.setSize( 1280, 350 );
-				document.body.appendChild( renderer.domElement );
-
-				// events
-
-				window.addEventListener( 'resize', onWindowResize, false );
-
-			}
-
-			function setupAttributes( geometry ) {
-
-				// TODO: Bring back quads
-
-				var vectors = [
-					new THREE.Vector3( 1, 0, 0 ),
-					new THREE.Vector3( 0, 1, 0 ),
-					new THREE.Vector3( 0, 0, 1 )
-				];
-
-				var position = geometry.attributes.position;
-				var centers = new Float32Array( position.count * 3 );
-
-				for ( var i = 0, l = position.count; i < l; i ++ ) {
-
-					vectors[ i % 3 ].toArray( centers, i * 3 );
-
+		var anim = function() {
+			$.globalCompositeOperation = 'source-over';
+			$.fillStyle = 'hsla(0, 0%, 0%, .51)';
+			$.fillRect(0, 0, w, h);
+			$.globalCompositeOperation = 'lighter';
+			for (var i = 0; i < 20; i++) {
+				x = 0; x = 0; 
+				$.beginPath();
+				for (var j = 0; j < num; j++) {
+					_u = (u/4)+i, col = u *(_u/4); 
+					x += .5 * Math.sin(16);
+					y = x * Math.sin(i + 15.4 * t + x /20) / 1.15;
+					_x = x * Math.cos(i) + y * Math.sin(b);
+					_y = x * Math.sin(i) + y * Math.cos(b);
+					b = (j) * Math.PI /1.51;
+					$.lineWidth = .05;
+					$.lineTo(w / 2- _x, h / 2 -_y);
 				}
-
-				geometry.addAttribute( 'center', new THREE.BufferAttribute( centers, 3 ) );
-
+				var g = $.createLinearGradient(w / 2 + _x, h / 2 + _y,  
+					1, w / 2 + _x, h / 2 + _y);
+				g.addColorStop(0.1, 'hsla('+col+',90%,50%,1)');
+				g.addColorStop(0.5, 'hsla('+_u+',95%,50%,1)');
+				g.addColorStop(1, 'hsla(0,0%,0%,1)'); 
+				$.strokeStyle = g;
+				$.stroke();
 			}
+			t += _t;
+			u-=.2;
+			window.requestAnimationFrame(anim);
+		};
+		anim();
 
-			function onWindowResize() {
+		window.addEventListener('resize', function() {
+			c.width = w = window.innerWidth;
+			c.height = h = window.innerHeight;
+		}, false);
 
-				camera.aspect = window.innerWidth / window.innerHeight;
-				camera.updateProjectionMatrix();
+	</script>
 
-				renderer.setSize( window.innerWidth, window.innerHeight );
-
-			}
-
-			function animate() {
-
-				requestAnimationFrame( animate );
-
-				for ( var i = 0; i < scene.children.length; i ++ ) {
-
-					var object = scene.children[ i ];
-					object.rotation.x += 0.005;
-					object.rotation.y += 0.01;
-
-				}
-
-				renderer.render( scene, camera );
-
-			}
-
-		</script>
-
-	</body>
+</body>
 </html>
