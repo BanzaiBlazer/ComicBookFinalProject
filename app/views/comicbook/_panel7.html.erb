@@ -2,9 +2,21 @@
 	<button class="btn btn-danger" id="action2">ACTION!</button>
 </div>
 
+<div id="swishdiv1" style="display:none">
+		<%= render "panel7swish1" %>
+</div>
+
+<div id="swishdiv2" style="display:none">
+		<%= render "panel7swish1" %>
+</div>
+
+<div id="swishdiv3" style="display:none">
+		<%= render "panel7swish1" %>
+</div>
+
 <div id="panel7" style="display:none">
 	
-	<div id="tentaclechopped">
+	<div id="tentaclechopped" style="display:none">
 		<%= image_tag "tentaclechopped.png", width:"1230", height:"550"%>
 	</div>
 
@@ -26,12 +38,25 @@
 	$(document).ready(function(){
 		$("#action2").click(function(){
 			$(document).ready(function(){
+				$("#action2").delay( 300 ).fadeOut("fast");
+
+				$("#swishdiv1").delay( 50 ).fadeIn("fast");
+				$("#swishdiv1").delay( 100 ).fadeOut("fast");
+				$("#swishdiv2").delay( 150 ).fadeIn("fast");
+				$("#swishdiv2").delay( 200 ).fadeOut("fast");
+				$("#swishdiv3").delay( 250 ).fadeIn("fast");
+				$("#swishdiv3").delay( 300 ).fadeOut("fast").delay(2500);
+
+				$("#tentaclechopped").delay( 2500 ).fadeIn("slow");
+
 				$("#checkmate").delay( 4000 ).fadeIn("slow");
 				$("#panel7").fadeIn("slow").delay( 2500 );
 			});
-			$("#tentaclechopped").delay( 1500 ).animate( {
+
+			$("#tentaclechopped").delay( 2500 ).animate( {
 				marginBottom: "-950px"
 			}, 2000 );
+
 			$("#panel7to8button").delay( 5500 ).fadeIn("slow");
 		});
 	});

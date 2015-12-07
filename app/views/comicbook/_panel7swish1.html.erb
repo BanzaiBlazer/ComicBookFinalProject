@@ -1,0 +1,57 @@
+<!-- CSS STYLING -->
+
+<style type="text/css">
+
+@import url(https://fonts.googleapis.com/css?family=Paytone+One);
+
+#swooshdiv {
+	transform: translate(-50%, -50%) skewX(-6deg) rotate(-12deg) skewY(6deg) skewX(-12deg);
+}
+
+p {
+	padding: 0; margin: 0;
+	text-transform: uppercase;
+	text-align: center;
+	font-size: 5rem;
+	font-family: "Paytone One";
+	font-weight: bold;
+	color: white;
+	
+	text-shadow: 0px 0px 0 #28C;
+	/* transition: .3s ease; */
+}
+
+</style>
+
+<!-- TEXT SWOOSH -->
+
+<div>
+	<p>SWISH!</p>
+</div>
+
+<!-- JAVASCRIPT -->
+
+<script type="text/javascript">
+	
+var sh = 18;
+
+function dropSh(val) {
+	var $txsh = $('p').css('text-shadow');
+	$('p').css('text-shadow', $txsh + ', ' + val + 'px ' + val + 'px 0 #FF0000');
+}
+
+var i = 0;
+
+function myLoop () {
+   setTimeout(function () {
+		dropSh(i);
+		i++;
+      if (i < sh) {
+         myLoop();
+		}
+   }, 5*(i*5/3))
+}
+
+myLoop();
+
+</script>
