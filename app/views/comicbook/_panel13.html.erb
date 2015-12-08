@@ -1,3 +1,10 @@
+<script> 
+	$(document).ready(function(){
+		$("#heck").fadeIn("slow");
+	});
+</script> 
+
+<div id="heck">
 <script src="https://github.com/processing/p5.js/releases/download/0.4.6/p5.min.js"></script>
 
 	<script type="text/javascript">
@@ -124,11 +131,14 @@
 </div>
 
 <div id="panel13target5">
-	<h3>No sure, I'll leave it to you.</h3>
+	<h3>Not sure, I'll leave it to you.</h3>
 </div>
 
 <div id="panel13target6">
 	<h3>... Alright, father. I'll talk to him.</h3>
 </div>
 
-<div></div>
+<div id="panel12to13">
+	<%= link_to "More", comicbook_comic13_path, method: :get, class:"btn btn-danger", role:"button" %>
+</div>
+</div>
