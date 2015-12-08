@@ -1,0 +1,134 @@
+<script src="https://github.com/processing/p5.js/releases/download/0.4.6/p5.min.js"></script>
+
+	<script type="text/javascript">
+		var yoff = theta = 0.0;
+		var sunlight;
+		var sunAngle = .9;
+
+		function setup() {
+
+			createCanvas(windowWidth, windowHeight);
+			frameRate(120);
+
+			sunlight = new Sunlight();
+
+			for(var s=0; s<50; s++) {
+				sunlight.addBeam();
+			}
+
+		}
+
+		function draw() {
+			backgroundScene();
+
+			if(frameCount%1==0) {
+				sunlight.addBeam();
+				sunlight.addBeam();
+				sunlight.addBeam();
+				sunlight.addBeam();
+				sunlight.addBeam();
+			}
+			sunlight.run();
+
+			theta += TAU/237;
+		}
+
+		function Sunlight() {
+			this.lightBeams = [];
+		}
+
+		Sunlight.prototype.run = function() {
+			for(var s=0; s<this.lightBeams.length; s++) {
+				var b = this.lightBeams[s];
+				b.run();
+				if(b.isFaded()) {
+					this.lightBeams.splice(s, 1);
+				}
+			}
+		};
+
+		Sunlight.prototype.addBeam = function() {
+			this.lightBeams.push(new Beam());
+		};
+
+		function Beam() {
+			this.source = createVector(random(-width, width), -50);
+			this.alpha = random(10, 25);
+			/*  this.alpha = 80;*/
+			this.length = random(1, max(width,height));
+			this.lifespan = 100.0;
+			this.strokeWeight = random(1,10);
+			this.thetaInt = theta;
+
+			this.sink = createVector(this.source.x+this.length*cos(sunAngle), this.length*sin(sunAngle));
+		}
+
+		Beam.prototype.run = function() {
+			this.update();
+			this.display();
+		};
+
+		Beam.prototype.update = function() {
+			this.alpha -= 0.2;
+			this.lifespan -= 0.5;
+
+			this.motion = createVector(3 * sin(this.thetaInt+theta),  0.5 * sin(this.thetaInt+theta));
+			this.source.add(this.motion);
+			this.sink = createVector(this.source.x+this.length*cos(sunAngle), this.source.y+this.length*sin(sunAngle));
+		};
+
+		Beam.prototype.display = function() {
+			strokeWeight(this.strokeWeight);
+			strokeCap(SQUARE);
+			stroke(255, 255, 255, this.alpha);
+			line(this.source.x, this.source.y, this.sink.x, this.sink.y);
+		};
+
+		Beam.prototype.isFaded = function() {
+			if (this.lifespan < 0) {
+				return true;
+			} else {
+				return false;
+			}
+		};
+
+		function backgroundScene() {
+			var fromDepth = color(255, 0, 0, 100);
+			var toSurface = color(0, 0, 0, 100);
+
+			background(80);
+
+			for(j=0; j<=(height); j++) {
+				var incJ = map(j, 0, height, 0, 1);
+				var c = lerpColor(toSurface, fromDepth, incJ);
+				stroke(c);
+				line(0, j, width, j);
+			}
+		}	
+</script>
+
+<div id="panel13target1">
+	<h4>Cyrus... He has become a problem.</h4>
+</div>
+
+<div id="panel13target2">
+	<h3>What do you want me to do about this, father?</h3>
+</div>
+
+<div id="panel13target3">
+	<h3>How am I supposed to rule this world if he keeps slaying my minions?</h3>
+</div>
+
+<div id="panel13target4">
+	<h3>This is your grandson...</h3>
+</div>
+
+<div id="panel13target5">
+	<h3>No sure, I'll leave it to you.</h3>
+</div>
+
+<div id="panel13target6">
+	<h3>... Alright, father. I'll talk to him.</h3>
+</div>
+
+<div></div>
