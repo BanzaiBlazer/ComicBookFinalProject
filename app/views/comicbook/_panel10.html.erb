@@ -15,7 +15,7 @@
 	</div>
 
 	<div id="panel10target2">
-		<h3>I know... There's more demons are out in this area?</h3>
+		<h3>I know... Are there more demons are out in this area?</h3>
 	</div>
 
 	<div id="panel10target3">
@@ -26,11 +26,23 @@
 		<h3>Roger that, thanks Meridith.</h3>
 	</div>
 
+	<div id="panel10target5">
+		<h3>Try not to kill them...</h3>
+	</div>
+
+	<div id="panel10target6">
+		<h3>...No promises, no regrets.</h3>
+	</div>
+
 	<div id="theend">
 		<%= image_tag "theend.png", width: "440", height: "100" %>
 	</div>
 
 	<div id="panel10to11">
 		<%= link_to "More", comicbook_comic10_path, method: :get, class:"btn btn-danger", role:"button" %>
+	</div>
 </div>
+
+<div id="playagain">
+	<%= link_to "Play Again", comicbook_comic1_path, method: :get, class:"btn btn-danger", role:"button" %>
 </div>
