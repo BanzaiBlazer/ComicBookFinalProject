@@ -14,6 +14,8 @@ Rails.application.routes.draw do
   get "comicbook/comic11"
   get "comicbook/comic12"
   get "comicbook/comic13"
+  get "comicbook/comic14"
+  get "comicbook/comic15"
 
   get "comicbook/comic1", to: "comicbook#comic1"
 

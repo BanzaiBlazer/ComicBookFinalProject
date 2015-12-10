@@ -1,0 +1,153 @@
+<style>
+	canvas {
+		position: absolute;
+		top: 0;
+		left: 0;
+	}
+</style>
+
+
+<canvas id="bg" width="1260" height="800"></canvas>
+<canvas id="effects" width="1260" height="800"></canvas>
+
+
+<script type="text/javascript">
+	var interval = 1000/60;
+	var MAX_RADIUS = 50;
+	var MAX_RANGE = 60;
+
+	var bg = document.getElementById('bg').getContext('2d');
+	var ctx = document.getElementById('effects').getContext('2d');
+	ctx.shadowColor = 'white';
+	ctx.shadowBlur = 40;
+	var width = ctx.canvas.width;
+	var height = ctx.canvas.height;
+	var group = new ExplosionGroup(200, 200, 3 + Math.floor(rand(5)));
+
+	window.requestAnimationFrame(drawBg);
+	window.requestAnimationFrame(draw);
+
+	function draw() {
+		setTimeout(function() {
+			window.requestAnimationFrame(draw);
+			group.draw();
+			if (group.arcs.length === 0) {
+				group = new ExplosionGroup(100 + rand(width-200), 100 + rand(height-200), 3 + Math.floor(rand(5)));
+			}
+		}, interval);
+	}
+
+	function ArcExplosion(x, y, group) {
+		this.x = x;
+		this.y = y;
+		this.group = group;
+		this.maxRadius = calcRadius(this);
+		this.radius = 0;
+		this.alpha = 1;
+		this.colors = getColors(this);
+	}
+
+	ArcExplosion.prototype.draw = function() {
+  // More likely to delay start of smaller explosions
+  if (this.radius === 0 && this.maxRadius < MAX_RADIUS) {
+  	if (rand() > this.maxRadius/MAX_RADIUS) {
+  		return;
+  	} 
+  }
+  
+  if (this.radius < this.maxRadius) {
+  	this.radius += (this.maxRadius / 25);
+  } else {
+  	this.alpha *= 0.95;
+  }
+  if (this.alpha < 0.01) {
+  	for (var i = 0; i < this.group.arcs.length; i++) {
+  		if (this.group.arcs[i] === this) {
+  			this.group.arcs.splice(i, 1);
+  			return;
+  		}
+  	} 
+  }
+  var gradient = calcGradient(this);
+  ctx.beginPath();
+  drawCircle(ctx, this, gradient);
+  ctx.fill();
+}
+
+function ExplosionGroup(x, y, numExp) {
+	this.x = x;
+	this.y = y;
+	this.numExp = numExp;
+	this.arcs = [new ArcExplosion(x, y, this)];
+	for (var i = 0; i < numExp; i++) {
+		this.arcs.push(new ArcExplosion((this.x - MAX_RANGE) + rand(2 * MAX_RANGE), (this.y - MAX_RANGE) + rand(2 * MAX_RANGE), this));
+	}
+}
+
+ExplosionGroup.prototype.draw = function() {
+	ctx.clearRect(0, 0, width, height);
+	this.arcs.forEach(function(arc) {
+		arc.draw();
+	});
+}
+
+function drawCircle(ctx, exp, gradient) {
+	ctx.fillStyle = gradient;
+	ctx.globalAlpha = exp.alpha;
+	ctx.arc(exp.x, exp.y, exp.radius, 0, 2 * Math.PI);
+}
+
+function calcGradient(exp) {
+	var gradient = ctx.createRadialGradient(exp.x, exp.y, 0, exp.x, exp.y, exp.maxRadius);
+	gradient.addColorStop(0, exp.colors[0]);
+	gradient.addColorStop(1, exp.colors[1]);
+	return gradient;
+}
+
+function getColors(exp) {
+	var colors = [];
+	if (exp.x === exp.group.x && exp.y === exp.group.y) {
+		return ['white', 'orange'];
+	}
+	var start = rand();
+	var end = rand();
+	if (start <=0.33) {
+		colors[0] = 'lightyellow';
+	} else if (start > 0.33 && start <= 0.67) {
+		colors[0] = 'yellow';
+	} else {
+		colors[0] = 'orange';
+	}
+	if (end <=0.33) {
+		colors[1] = 'orange';
+	} else if (end > 0.33 && end <= 0.67) {
+		colors[1] = 'darkorange';
+	} else {
+		colors[1] = 'red';
+	}
+	return colors;
+}
+
+function calcRadius(exp) {
+	var dist = distance(exp, exp.group);
+	if (dist === 0) {
+		return MAX_RADIUS;
+	}
+	return Math.max(6, (MAX_RADIUS * 0.8) * ((MAX_RANGE - dist)/MAX_RANGE));
+}
+
+function distance(p1, p2) {
+	return Math.sqrt(Math.pow(p1.x - p2.x, 2) + Math.pow(p1.y - p2.y, 2));
+}
+
+function drawBg() {
+	bg.fillRect(0, 0, width, height);
+}
+
+function rand(max) {
+	if (max) {
+		return Math.random() * max;
+	}
+	return Math.random();
+}
+</script>
