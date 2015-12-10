@@ -13,7 +13,7 @@
 *= require_tree .
 *= require_self
 */
-
+@charset "UTF-8";
 /* CSS Document */
 
 p{
@@ -98,7 +98,7 @@ body{
 }
 
 #panel3background{
-	background-image: url(<%= asset_path 'alleywaydark.png' %>);	
+	background-image: url(/assets/alleywaydark-5332f37239b50d4211c99744b01fec36632c107cc69dd2cd492050bddee18d8d.png);	
 	z-index: 9;	
 }
 
